@@ -1,0 +1,23 @@
+input,
+h2 {
+  text-align: right;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.big-box {
+  height: 200px;
+  padding-bottom: 150px;
+}
+
+.mid {
+  text-align: center;
+  padding-top: 5%;
+}
+
+.medium-size {
+  width: 150px;
+  height: 150px;
+}

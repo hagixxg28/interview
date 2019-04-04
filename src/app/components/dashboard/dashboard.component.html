@@ -1,0 +1,104 @@
+<div class="container-fluid">
+
+  <div class="container-fluid">
+
+    <div class="row flex-row-reverse">
+      <div class="col-sm-4 mr-auto">
+        <h2>מאמר חדש</h2>
+        <form #addArticle="ngForm">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="כותרת המאמר" [(ngModel)]="newArticle.title"
+              #titleData="ngModel" name="title">
+          </div>
+          <div class=" input-group mb-3">
+            <input type="date" class="form-control" placeholder="תאריך" [(ngModel)]="newArticle.startDate"
+              #dateData="ngModel" name="startDate">
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control big-box" placeholder="תוכן המאמר" [(ngModel)]="newArticle.body"
+              #bodyData="ngModel" name="body">
+          </div>
+          <button (click)="postArticle()" type="button" class="btn-block btn-info">שמירת המאמר</button>
+        </form>
+
+
+
+      </div>
+
+
+
+      <div class="col-sm-4 mid">
+        <div>
+          ADD PICTURE
+        </div>
+        <img class="medium-size" src="/assets/images/add-image.png">
+      </div>
+
+
+
+
+
+
+      <div class="col-sm-4">
+        <h2>רשימת מאמרים</h2>
+        <hr>
+        <ul style="list-style: none;">
+          <li *ngFor="let article of allArticles; let i=index;">
+            <div (click)="toggleComments(i)" class="align-right">{{article.title}}</div>
+            <span (click)="openEdit(i)">Edit </span>
+            <span (click)="remove(i)"> Remove </span>
+            <div class="align-right">{{article.startDate}}</div>
+            <div *ngIf="article.showComments">
+              <ul style="list-style: none;">
+                <li *ngFor="let comments of item let j=index;">
+
+                </li>
+              </ul>
+              <input type="text" class="form-control" placeholder="כתוב תגובה" [(ngModel)]="newComment.body"
+                #commentBodyData="ngModel" name="commentBody">
+              <button (click)="postComment(i)" type="button" class="btn btn-info">תגובה</button>
+              <button (click)="hideComment()" type="button" class="btn btn-warning">ביטול</button>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br>
+
+  </div>
+
+  <div class="container">
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal" [ngStyle]="{'display': modalDisplay}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">
+              <input class="form-control" type="text" [(ngModel)]="currentArticle.title" #titleData="ngModel"
+                name="title">
+            </h4>
+            <button (click)="hideModal()" type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <input class="form-control" type="text" [(ngModel)]="currentArticle.body" #bodyData="ngModel" name="body">
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button (click)="saveChanges()" type="button" class="btn btn-info" data-dismiss="modal">Save
+              Changes</button>
+            <button (click)="hideModal()" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
