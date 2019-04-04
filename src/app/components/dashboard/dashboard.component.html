@@ -50,8 +50,8 @@
             <div class="align-right">{{article.startDate}}</div>
             <div *ngIf="article.showComments">
               <ul style="list-style: none;">
-                <li *ngFor="let comments of item let j=index;">
-
+                <li *ngFor="let comment of article.comments let j=index;">
+                  {{comment.body}}
                 </li>
               </ul>
               <input type="text" class="form-control" placeholder="כתוב תגובה" [(ngModel)]="newComment.body"

@@ -85,6 +85,7 @@ export class DashboardComponent implements OnInit {
 
     if (!this.allArticles[index].showComments) {
       console.log('showing comments')
+      console.log(this.allArticles[index])
       this.allArticles[index].showComments = true;
       return;
     }
@@ -92,11 +93,15 @@ export class DashboardComponent implements OnInit {
   }
 
   postComment(index) {
-    this.newComment.articleId = this.allArticles[index].id;
+
+    this.newComment.article_id = this.allArticles[index].id;
+    console.log(this.newComment)
     this.allData.createComment(this.newComment)
     setTimeout(() => {
-      this.renderComments(index);
-    }, 0);
+      this.renderArticles();
+    }, 100);
+
+
   }
 
 }

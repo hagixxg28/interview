@@ -21,7 +21,6 @@ export class CommentService {
   }
 
   public createComment(comment: Comment) {
-
     return this.http.post(this.Url, comment)
   }
 
